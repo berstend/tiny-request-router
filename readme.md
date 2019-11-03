@@ -28,6 +28,7 @@ npm install --save tiny-request-router
 
 ```typescript
 import { Router } from 'tiny-request-router'
+// NodeJS: const { Router } = require('tiny-request-router')
 
 const router = new Router()
 
