@@ -46,13 +46,15 @@ const match2 = router.match('GET', '/v1/bob/22')
 ### Make your handlers type safe (TypeScript)
 
 ```typescript
+import { Router, Method } from 'tiny-request-router'
+
 // Let the router know that handlers are async functions returning a Response
 type HandlerType = () => Promise<Response>
 
 const router = new Router<HandlerType>()
 router.all('*', async () => new Response('Hello'))
 
-const match = router.match('GET', '/foobar')
+const match = router.match('GET' as Method, '/foobar')
 if (match) {
   // Call the async function of that match
   const response = await match.handler()
