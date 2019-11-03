@@ -1,0 +1,78 @@
+{
+  "name": "tiny-request-router",
+  "version": "1.1.0",
+  "description": "Fast, generic and type safe router (match method and path).",
+  "author": "berstend",
+  "license": "MIT",
+  "repository": "berstend/tiny-request-router",
+  "homepage": "https://github.com/berstend/tiny-request-router#readme",
+  "main": "./dist/router.js",
+  "module": "./dist/router.mjs",
+  "unpkg": "./dist/router.min.js",
+  "browser": {
+    "./dist/router.js": "./dist/router.browser.js",
+    "./dist/router.mjs": "./dist/router.browser.mjs"
+  },
+  "types": "dist/src/router.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "check": "tsc --pretty --noEmit",
+    "check:watch": "npm run check -- --watch",
+    "declarations": "tsc --emitDeclarationOnly",
+    "prebuild": "rimraf dist",
+    "build": "rollup -c rollup.config.ts && npm run declarations",
+    "dev": "npm run prebuild && rollup -c rollup.config.ts -w && npm run declarations",
+    "test": "ava-ts -v",
+    "prepublish": "npm run build"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true
+  },
+  "keywords": [
+    "router",
+    "service worker",
+    "universal",
+    "routing",
+    "cloudflare",
+    "worker",
+    "browser",
+    "node",
+    "url router",
+    "cloudflare worker",
+    "typescript",
+    "match request"
+  ],
+  "devDependencies": {
+    "@types/node": "^12.11.7",
+    "@types/node-fetch": "^2.5.2",
+    "@types/service-worker-mock": "^2.0.1",
+    "ava": "^2.4.0",
+    "ava-ts": "^0.25.1",
+    "fetch-mock": "7.5.1",
+    "isomorphic-fetch": "^2.2.1",
+    "node-fetch": "^2.6.0",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.25.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "service-worker-mock": "^2.0.3",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "path-to-regexp": "^3.1.0"
+  },
+  "resolutions": {
+    "**/fsevents": "^1.2.9",
+    "fetch-mock": "^7.5.1"
+  }
+}
