@@ -1,4 +1,4 @@
-# tiny-request-router [![ ](https://img.shields.io/npm/v/tiny-request-router.svg)](https://www.npmjs.com/package/tiny-request-router)
+# tiny-request-router [![ ](https://travis-ci.org/berstend/tiny-request-router.svg?branch=master)](https://travis-ci.org/berstend/tiny-request-router) [![ ](https://img.shields.io/npm/v/tiny-request-router.svg)](https://www.npmjs.com/package/tiny-request-router)
 
 > Fast, generic and type safe router (match method and path).
 
