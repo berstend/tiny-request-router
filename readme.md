@@ -24,7 +24,7 @@ yarn add tiny-request-router
 npm install --save tiny-request-router
 ```
 
-## Usage (TypeScript)
+## Usage (JavaScript/TypeScript)
 
 ```typescript
 import { Router } from 'tiny-request-router'
@@ -43,7 +43,7 @@ const match2 = router.match('GET', '/v1/bob/22')
 // => { handler: 'foo1', params: { name: 'bob', age: '22' }, ... }
 ```
 
-### Make your handlers type safe
+### Make your handlers type safe (TypeScript)
 
 ```typescript
 // Let the router know that handlers are async functions returning a Response
