@@ -91,3 +91,7 @@ addEventListener('fetch', event => {
 ## API
 
 The API is extremely minimal and what you would expect (`.get()`, `.all()`, etc). Please check out the [tiny source code](src/router.ts) or [tests](test/functionality.ts) for more info.
+
+## License
+
+MIT
