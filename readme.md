@@ -4,7 +4,7 @@
 
 ## Features
 
-* Minimal and opionless router, can be used in any script and environment.
+* Minimal and opinionless router, can be used in any script and environment.
 * Matches a request method (e.g. `GET`) and a path (e.g. `/foobar`) against a list of routes
 * Uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp), which is used by express and therefore familiar
 * Allows wildcards (e.g. `/user/(.*)/age`) and named parameters (e.g. `/info/:username/:age`)
