@@ -47,7 +47,9 @@ const match2 = router.match('GET', '/v1/bob/22')
 
 ```typescript
 // Let the router know that handlers are async functions returning a Response
-const router = new Router<() => Promise<Response>>()
+type HandlerType = () => Promise<Response>
+
+const router = new Router<HandlerType>()
 router.all('*', async () => new Response('Hello'))
 
 const match = router.match('GET', '/foobar')
