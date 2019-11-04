@@ -1,4 +1,7 @@
-import pathRegexp, { Key, RegExpOptions } from 'path-to-regexp'
+import pathToRegexp, { Key, RegExpOptions } from 'path-to-regexp'
+
+// https://basarat.gitbooks.io/typescript/docs/tips/barrel.html
+export { pathToRegexp }
 
 export interface Route<HandlerType> {
   method: Method | MethodWildcard
@@ -25,8 +28,6 @@ export interface RouteOptions extends RegExpOptions {}
 
 export type Key = Key
 export type Keys = Array<Key>
-
-// export type Handler = any
 
 export class Router<HandlerType = any> {
   public routes: Array<Route<HandlerType>> = []
@@ -56,12 +57,12 @@ export class Router<HandlerType = any> {
     return this._push('OPTIONS', path, handler, options)
   }
 
-  public match (method: Method | MethodWildcard, path: string): RouteMatch<HandlerType> | null {
+  public match (method: Method, path: string): RouteMatch<HandlerType> | null {
     for (const route of this.routes) {
       // Skip immediately if method doesn't match
       if (route.method !== method && route.method !== 'ALL') continue
       // Speed optimizations for catch all wildcard routes
-      if (route.path === '*') {
+      if (route.path === '*' || route.path === '(.*)') {
         return { ...route, params: { '0': route.path } }
       }
       if (route.path === '/' && route.options.end === false) {
@@ -82,7 +83,7 @@ export class Router<HandlerType = any> {
     options: RouteOptions
   ) {
     const keys: Keys = []
-    const regexp = pathRegexp(path, keys, options)
+    const regexp = pathToRegexp(path, keys, options)
     this.routes.push({ method, path, handler, keys, options, regexp })
     return this
   }
