@@ -1,4 +1,4 @@
-import pathToRegexp, { Key, RegExpOptions } from 'path-to-regexp'
+import { Key as TokenKey, pathToRegexp, TokensToRegexpOptions } from 'path-to-regexp'
 
 // https://basarat.gitbooks.io/typescript/docs/tips/barrel.html
 export { pathToRegexp }
@@ -24,45 +24,45 @@ export interface Params {
   [key: string]: string
 }
 
-export interface RouteOptions extends RegExpOptions {}
+export interface RouteOptions extends TokensToRegexpOptions {}
 
-export type Key = Key
+export type Key = TokenKey
 export type Keys = Array<Key>
 
 export class Router<HandlerType = any> {
   public routes: Array<Route<HandlerType>> = []
 
-  public all (path: string, handler: HandlerType, options: RouteOptions = {}) {
+  public all(path: string, handler: HandlerType, options: RouteOptions = {}) {
     return this._push('ALL', path, handler, options)
   }
-  public get (path: string, handler: HandlerType, options: RouteOptions = {}) {
+  public get(path: string, handler: HandlerType, options: RouteOptions = {}) {
     return this._push('GET', path, handler, options)
   }
-  public post (path: string, handler: HandlerType, options: RouteOptions = {}) {
+  public post(path: string, handler: HandlerType, options: RouteOptions = {}) {
     return this._push('POST', path, handler, options)
   }
-  public put (path: string, handler: HandlerType, options: RouteOptions = {}) {
+  public put(path: string, handler: HandlerType, options: RouteOptions = {}) {
     return this._push('PUT', path, handler, options)
   }
-  public patch (path: string, handler: HandlerType, options: RouteOptions = {}) {
+  public patch(path: string, handler: HandlerType, options: RouteOptions = {}) {
     return this._push('PATCH', path, handler, options)
   }
-  public delete (path: string, handler: HandlerType, options: RouteOptions = {}) {
+  public delete(path: string, handler: HandlerType, options: RouteOptions = {}) {
     return this._push('DELETE', path, handler, options)
   }
-  public head (path: string, handler: HandlerType, options: RouteOptions = {}) {
+  public head(path: string, handler: HandlerType, options: RouteOptions = {}) {
     return this._push('HEAD', path, handler, options)
   }
-  public options (path: string, handler: HandlerType, options: RouteOptions = {}) {
+  public options(path: string, handler: HandlerType, options: RouteOptions = {}) {
     return this._push('OPTIONS', path, handler, options)
   }
 
-  public match (method: Method, path: string): RouteMatch<HandlerType> | null {
+  public match(method: Method, path: string): RouteMatch<HandlerType> | null {
     for (const route of this.routes) {
       // Skip immediately if method doesn't match
       if (route.method !== method && route.method !== 'ALL') continue
       // Speed optimizations for catch all wildcard routes
-      if (route.path === '*' || route.path === '(.*)') {
+      if (route.path === '(.*)') {
         return { ...route, params: { '0': route.path } }
       }
       if (route.path === '/' && route.options.end === false) {
@@ -76,13 +76,16 @@ export class Router<HandlerType = any> {
     return null
   }
 
-  private _push (
+  private _push(
     method: Method | MethodWildcard,
     path: string,
     handler: HandlerType,
     options: RouteOptions
   ) {
     const keys: Keys = []
+    if (path === '*') {
+      path = '(.*)'
+    }
     const regexp = pathToRegexp(path, keys, options)
     this.routes.push({ method, path, handler, keys, options, regexp })
     return this

@@ -74,7 +74,7 @@ test('should match route with named params', async t => {
 
   router
     .get('/(v1|v2)/:name/:age', 'foo1') // ok!
-    .get('/(v1|v2)/:name/:age/*', 'foo2') // Not ok!
+    // .get('/(v1|v2)/:name/:age/*', 'foo2') // Not ok!
     .get('/(v1|v2)/:name/:age/(.*)', 'foo3') // ok!
     .get('/v2/:name/:age', 'foo4')
     .get('/v3/alice', 'foo5')
