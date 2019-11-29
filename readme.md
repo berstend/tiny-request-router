@@ -4,17 +4,17 @@
 
 ## Features
 
-* Minimal and opinionless router, can be used in any script and environment.
-* Matches a request method (e.g. `GET`) and a path (e.g. `/foobar`) against a list of routes
-* Uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp), which is used by express and therefore familiar
-* Allows wildcards (e.g. `/user/(.*)/age`) and named parameters (e.g. `/info/:username/:age`)
-* Will not call your handlers automatically, as it only cares about matching
-* No magic, no assumptions, no fluff, tested
+- Minimal and opinionless router, can be used in any script and environment.
+- Matches a request method (e.g. `GET`) and a path (e.g. `/foobar`) against a list of routes
+- Uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp), which is used by express and therefore familiar
+- Allows wildcards (e.g. `/user/(.*)/age`) and named parameters (e.g. `/info/:username/:age`)
+- Will not call your handlers automatically, as it only cares about matching
+- Battle hardened in production ([Cloudflare Worker](https://www.cloudflare.com/products/cloudflare-workers/) with 10M requests per day)
+- No magic, no assumptions, no fluff, type safe, tested
 
 ### Route testing
 
-* You can use the [Express Route Tester](https://forbeslindesay.github.io/express-route-tester/) (select `2.0.0`) to debug your path patterns quickly
-
+- You can use the [Express Route Tester](https://forbeslindesay.github.io/express-route-tester/) (select `2.0.0`) to debug your path patterns quickly
 
 ## Installation
 
@@ -71,9 +71,9 @@ _Use something like [wrangler](https://github.com/cloudflare/wrangler) to bundle
 import { Router } from 'tiny-request-router'
 
 const router = new Router()
-router.get("/worker", async () => new Response('Hi from worker!'))
-router.get("/hello/:name", async (params) => new Response(`Hello ${params.name}!`))
-router.post("/test", async () => new Response('Post received!'))
+router.get('/worker', async () => new Response('Hi from worker!'))
+router.get('/hello/:name', async params => new Response(`Hello ${params.name}!`))
+router.post('/test', async () => new Response('Post received!'))
 
 // Main entry point in workers
 addEventListener('fetch', event => {
@@ -85,7 +85,6 @@ addEventListener('fetch', event => {
     event.respondWith(match.handler(match.params))
   }
 })
-
 ```
 
 ## API
