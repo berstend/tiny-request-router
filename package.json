@@ -25,7 +25,8 @@
     "build": "rollup -c rollup.config.ts && npm run declarations",
     "dev": "npm run prebuild && rollup -c rollup.config.ts -w && npm run declarations",
     "test": "ava-ts -v",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "docs": "documentation readme --quiet --shallow --github --markdown-theme transitivebs --readme-file readme.md --section API ./src/router.ts && npx prettier --write readme.md && npx prettier --write readme.md"
   },
   "prettier": {
     "printWidth": 100,
@@ -50,6 +51,7 @@
     "@types/node": "^12.12.14",
     "ava": "^2.4.0",
     "ava-ts": "^0.25.1",
+    "documentation-markdown-themes": "^12.1.5",
     "rimraf": "^3.0.0",
     "rollup": "^1.27.5",
     "rollup-plugin-commonjs": "^10.1.0",
