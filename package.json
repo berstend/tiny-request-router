@@ -47,22 +47,22 @@
     "match request"
   ],
   "devDependencies": {
-    "@types/node": "^12.11.7",
+    "@types/node": "^12.12.14",
     "ava": "^2.4.0",
     "ava-ts": "^0.25.1",
     "rimraf": "^3.0.0",
-    "rollup": "^1.25.2",
+    "rollup": "^1.27.5",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript": "^1.0.1",
-    "ts-node": "^8.4.1",
-    "tslint": "^5.11.0",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.15.0",
-    "tslint-config-standard": "^8.0.1",
-    "typescript": "^3.0.3"
+    "tslint-config-standard": "^9.0.0",
+    "typescript": "^3.7.2"
   },
   "dependencies": {
-    "path-to-regexp": "^3.1.0"
+    "path-to-regexp": "^6.1.0"
   }
 }
