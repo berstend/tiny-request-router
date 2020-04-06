@@ -48,7 +48,7 @@
     "match request"
   ],
   "devDependencies": {
-    "@types/node": "^12.12.14",
+    "@types/node": "^13.11.0",
     "ava": "^2.4.0",
     "ava-ts": "^0.25.1",
     "documentation-markdown-themes": "^12.1.5",
