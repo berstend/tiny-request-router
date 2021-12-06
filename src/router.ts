@@ -151,6 +151,31 @@ export class Router<HandlerType = any> {
     return null
   }
 
+  /**
+   * Match the provided method and path against the list of registered routes.
+   *
+   * @example
+   * router.get('/foobar', async () => {})
+   *
+   * const matches = router.matchAll('GET', '/foobar')
+   * // Call the async function for each match
+   * for (const match of matches) {
+   *   await match.handler()
+   * }
+   */
+  public matchAll(method: Method, path: string): RouteMatch<HandlerType>[] {
+    const routes: RouteMatch<HandlerType>[] = []
+    for (const route of this.routes) {
+      // Skip immediately if method doesn't match
+      if (route.method !== method && route.method !== 'ALL') continue
+      // If method matches try to match path regexp
+      const matches = route.regexp.exec(path)
+      if (!matches || !matches.length) continue
+      routes.push({ ...route, matches, params: keysToParams(matches, route.keys) })
+    }
+    return routes
+  }
+
   private _push(
     method: Method | MethodWildcard,
     path: string,
